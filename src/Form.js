@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import CustomForm from "./Components/CustomForm";
 
 const CONSTANTS = {
     FIRST_NAME: "firstname",
@@ -52,20 +53,20 @@ function Form({onReceivedData}) {
     })
 
     const handleFnameChange = e => {
-        const firstName = e.target.value;
-        dispatch({type: CONSTANTS.FIRST_NAME, payload:firstName});
+        // const firstName = e.target.value;
+        dispatch({type: CONSTANTS.FIRST_NAME, payload:e});
     }
     const handleLnameChange = e => {
-        const lastName = e.target.value;
-        dispatch({type: CONSTANTS.LAST_NAME, payload:lastName});
+        // const lastName = e.target.value;
+        dispatch({type: CONSTANTS.LAST_NAME, payload:e});
     }
     const handlePhoneChange = e => {
-        const phone = e.target.value;
-        dispatch({type: CONSTANTS.PHONE, payload:phone});
+        // const phone = e.target.value;
+        dispatch({type: CONSTANTS.PHONE, payload:e});
     }
     const handleDobChange = e => {
-        const dob = e.target.value;
-        dispatch({type: CONSTANTS.DOB, payload:dob});
+        // const dob = e.target.value;
+        dispatch({type: CONSTANTS.DOB, payload:e});
     }
 
     const handleSubmit = e => {
@@ -77,46 +78,10 @@ function Form({onReceivedData}) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="firstname">First Name</label>
-                    <input
-                        type="text"
-                        placeholder="First Name"
-                        id="firstname"
-                        value={state.fname}
-                        onChange={handleFnameChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="lastname">Last Name</label>
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        id="lastname"
-                        value={state.lname}
-                        onChange={handleLnameChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="phone">Phone Number</label>
-                    <input
-                        type="text"
-                        placeholder="Phone Number"
-                        id="phone"
-                        value={state.phone}
-                        onChange={handlePhoneChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="dob">First Name</label>
-                    <input
-                        type="datetime-local"
-                        placeholder="Date"
-                        id="dob"
-                        value={state.dob}
-                        onChange={handleDobChange}
-                    />
-                </div>
+                <CustomForm labelFor={"firstname"} labelName={"First Name"} inputType={"text"} inputValue={state.fname} onChangeFn={handleFnameChange} />
+                <CustomForm labelFor={"lastname"} labelName={"Last Name"} inputType={"text"} inputValue={state.lname} onChangeFn={handleLnameChange} />
+                <CustomForm labelFor={"phone"} labelName={"Phone Number"} inputType={"text"} inputValue={state.phone} onChangeFn={handlePhoneChange} />
+                <CustomForm labelFor={"dob"} labelName={"Date"} inputType={"datetime-local"} inputValue={state.dob} onChangeFn={handleDobChange} />
                 <button type="submit">Submit Form</button>
             </form>
         </div>
